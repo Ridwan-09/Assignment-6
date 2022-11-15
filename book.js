@@ -11,11 +11,11 @@ const searchBook = () => {
 }
 
 const displaySearchResult = data => {
-    console.log(data)
+    // console.log(data);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
-    data.docs.forEach(book => {
+    data.docs.forEach(doc => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
