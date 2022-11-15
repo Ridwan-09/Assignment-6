@@ -15,7 +15,7 @@ const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
-    data.docs.forEach(doc => {
+    data.docs.forEach(book => {
         console.log(doc)
         const div = document.createElement('div');
         div.classList.add('col');
