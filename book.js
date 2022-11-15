@@ -10,11 +10,12 @@ const searchBook = () => {
     .then(data => displaySearchResult(data))
 }
 
-const displaySearchResult = books => {
+const displaySearchResult = data => {
+    // console.log(data)
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
-    books.forEach(book => {
+    data.docs.forEach(book => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
