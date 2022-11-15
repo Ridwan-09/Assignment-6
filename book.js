@@ -16,6 +16,18 @@ const displaySearchResult = books => {
 
     books.forEach(book => {
         const div = document.createElement('div');
-        div.classList.add('card');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="card">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">Card title</h5>
+                  <p class="card-text"></p>
+                </div>
+            </div>
+        </div>
+        `;
+        searchResult.appendChild(div);
     })
 }
