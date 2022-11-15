@@ -11,7 +11,7 @@ const searchBook = () => {
 }
 
 const displaySearchResult = data => {
-    // console.log(data)
+    console.log(data)
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
