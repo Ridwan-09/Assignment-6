@@ -16,6 +16,7 @@ const displaySearchResult = data => {
     searchResult.textContent = '';
 
     data.docs.forEach(doc => {
+        console.log(doc)
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
