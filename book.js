@@ -11,5 +11,11 @@ const searchBook = () => {
 }
 
 const displaySearchResult = books => {
-    
+    const searchResult = document.getElementById('search-result');
+    searchResult.textContent = '';
+
+    books.forEach(book => {
+        const div = document.createElement('div');
+        div.classList.add('card');
+    })
 }
