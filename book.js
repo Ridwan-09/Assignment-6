@@ -15,20 +15,12 @@ const displaySearchResult = data => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
-    data.docs.forEach(book => {
-        console.log(doc)
+    data?.docs.forEach(book => {
+        // console.log(doc)
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div class="card p-3">
-            <img src="..." height="200px" class="card-img-top" alt="...">
-            <div class="card-body">
-                <p class="card-text"><b>Book Name:</b><i></i></p>
-                <p class="card-text"><b>Autthor Name:</b><i></i></p>
-                <p class="card-text"><b>Book Publisher</b><i></i></p>
-                <p class="card-text"><b>Publishing Year</b><i></i></p>
-            </div>
-        </div>
+    
         `;
         searchResult.appendChild(div);
     })
