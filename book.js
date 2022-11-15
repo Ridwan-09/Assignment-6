@@ -11,7 +11,7 @@ const searchBook = () => {
 }
 
 const displaySearchResult = data => {
-    // console.log(data);
+    console.log(data);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
 
@@ -19,15 +19,13 @@ const displaySearchResult = data => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <div class="card">
-                <img src="..." class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h5 class="card-title">Card title</h5>
-                  <p class="card-text"></p>
-                </div>
+        <div class="card" style="width: 18rem;>
+            <img src="..." class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text"></p>
             </div>
-        </div>
+          </div>
         `;
         searchResult.appendChild(div);
     })
