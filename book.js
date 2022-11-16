@@ -15,7 +15,7 @@ const searchBook = () => {
 const displaySearchResult = data => {
     // console.log(data);
     const searchResult = document.getElementById('search-result');
-    // searchResult.textContent = '';
+    searchResult.textContent = '';
 
     data?.docs.forEach((book) => {
         // console.log(doc)
