@@ -1,13 +1,16 @@
+// Calling all id
 const searchField = document.getElementById("search-field");
 const searchResult = document.getElementById('search-result');
 const searchQuantity = document.getElementById('search-quantity');
 const errorSearch = document.getElementById('error');
 const emptySearch = document.getElementById('empty-search');
 
+// function calling tp search books
 const searchBook = () => {
-    
     const searchText = searchField.value;
     // console.log(searchText);
+
+    // clearing data
     searchField.value = '';
     searchQuantity.innerText = '';
     searchResult.textContent = '';
@@ -19,6 +22,8 @@ const searchBook = () => {
     }
     else{
         emptySearch.style.display = 'none';
+
+        // book API url
         const url = `https://openlibrary.org/search.json?q=${searchText}`;
         fetch(url)
         .then(res => res.json())
@@ -26,9 +31,11 @@ const searchBook = () => {
     }
 };
 
+// function to display search results
 const displaySearchResult = data => {
     // console.log(data);
 
+    // showing total number of books
     searchQuantity.innerText = `Showing total ${data.numFound} number of books`;
 
     // error handling for unavailable books
@@ -40,11 +47,14 @@ const displaySearchResult = data => {
     else{
         errorSearch.style.display = 'none';
 
+        // looping
         data?.docs.forEach((book) => {
             // console.log(doc)
-    
+            
+            // calling function
             loadBookDetail(book);
-    
+            
+            // displaying book details
             const div = document.createElement('div');
             div.classList.add('col');
             div.innerHTML = `
@@ -63,14 +73,21 @@ const displaySearchResult = data => {
     }    
 }
 
+// function loading book details
 const loadBookDetail = book => {
+
+    // loading book image if available
     book?.cover_i ? (image_url =`https://covers.openlibrary.org/b/id/${book?.cover_i}-M.jpg`) : (image_url = 'images/no-image.jpg');
 
+    // loading book title if available
     book?.title ? (title = book?.title) : (title = 'Not available');
 
+    // loading book author name if available
     book?.author_name ? (author = book?.author_name) : (author = 'Not Available');
- 
+    
+    // loading book publisher name if available
     book?.publisher[0] ? (publisher = book?.publisher[0]) : (publisher = 'Not Available');
 
+    // loading book publish date if available
     book?.publish_date[0] ? (publishedDate = book?.publish_date[0]) : (publishedDate = 'Not Available');
 }
