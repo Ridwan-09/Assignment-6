@@ -14,10 +14,9 @@ const searchBook = () => {
     
     // error handling for empty search
     if(searchText === ''){
-        const emptySearch = document.getElementById('empty-search');
         emptySearch.style.display = 'block';
         errorSearch.style.display = 'none';
-        searchQuantity.style.display = 'none';
+        
     }
     else{
         emptySearch.style.display = 'none';
@@ -30,15 +29,12 @@ const searchBook = () => {
 
 const displaySearchResult = data => {
     // console.log(data);
-    
-    
 
-    
     searchQuantity.innerText = `Showing total ${data.numFound} number of books`;
 
     // error handling for unavailable books
     if(data.numFound === 0){
-        
+        searchQuantity.innerText = '';
         errorSearch.style.display = 'block';
         emptySearch.style.display = 'none';
     }
