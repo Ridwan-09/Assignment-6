@@ -4,7 +4,12 @@ const searchBook = () => {
     // console.log(searchText);
     searchField.value = '';
     
+    if(searchText === ''){
+        const emptySearch = document.getElementById('empty-search');
+        emptySearch.style.display = 'block';
+        searchQuantity.style.display = 'none';
 
+    }
 
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
     fetch(url)
@@ -16,6 +21,13 @@ const displaySearchResult = data => {
     // console.log(data);
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
+
+    const searchQuantity = document.getElementById('search-quantity');
+    searchQuantity.innerText = `Showing total ${data.numFound} number of books`;
+
+    if(data.numFound === 0){
+
+    }
 
     data?.docs.forEach((book) => {
         // console.log(doc)
