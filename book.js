@@ -1,16 +1,23 @@
+const searchField = document.getElementById("search-field");
+const searchResult = document.getElementById('search-result');
+const searchQuantity = document.getElementById('search-quantity');
+const errorSearch = document.getElementById('error');
+const emptySearch = document.getElementById('empty-search');
+
 const searchBook = () => {
-    const searchField = document.getElementById("search-field");
+    
     const searchText = searchField.value;
     // console.log(searchText);
     searchField.value = '';
-    searchResult.value = '';
     searchQuantity.innerText = '';
+    searchResult.textContent = '';
     
     // error handling for empty search
     if(searchText === ''){
         const emptySearch = document.getElementById('empty-search');
         emptySearch.style.display = 'block';
         errorSearch.style.display = 'none';
+        searchQuantity.style.display = 'none';
     }
     else{
         emptySearch.style.display = 'none';
@@ -23,15 +30,15 @@ const searchBook = () => {
 
 const displaySearchResult = data => {
     // console.log(data);
-    const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
+    
+    
 
-    const searchQuantity = document.getElementById('search-quantity');
+    
     searchQuantity.innerText = `Showing total ${data.numFound} number of books`;
 
     // error handling for unavailable books
     if(data.numFound === 0){
-        const errorSearch = document.getElementById('error');
+        
         errorSearch.style.display = 'block';
         emptySearch.style.display = 'none';
     }
