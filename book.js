@@ -37,7 +37,11 @@ const displaySearchResult = data => {
 }
 
 const loadBookDetail = book => {
-    book?.title = (title = book?.title) : (title = 'Not available');
+    book?.title ? (title = book?.title) : (title = 'Not available');
 
-    book?.cover_i = (image_url =` https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`) : (image_url = 'No Image')
+    book?.cover_i ? (image_url =` https://covers.openlibrary.org/b/id/${cover_i}-M.jpg`) : (image_url = 'images/no-image.jpg');
+    
+    book?.publisher[0] ? (publisher = book?.publisher[0]) : (publisher = 'Not Available');
+
+    book?.publish_date[0] ? (publishedDate = book?.publish_date[0]) : (publishedDate = 'Not Available');
 }
