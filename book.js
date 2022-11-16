@@ -16,7 +16,6 @@ const searchBook = () => {
     if(searchText === ''){
         emptySearch.style.display = 'block';
         errorSearch.style.display = 'none';
-        
     }
     else{
         emptySearch.style.display = 'none';
