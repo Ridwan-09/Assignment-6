@@ -6,19 +6,20 @@ const searchBook = () => {
     searchResult.value = '';
     searchQuantity.innerText = '';
     
-    
+    // error handling for empty search
     if(searchText === ''){
         const emptySearch = document.getElementById('empty-search');
         emptySearch.style.display = 'block';
-        searchQuantity.style.display = 'none';
-
+        errorSearch.style.display = 'none';
     }
-
-    const url = `https://openlibrary.org/search.json?q=${searchText}`;
-    fetch(url)
-    .then(res => res.json())
-    .then(data => displaySearchResult(data))
-}
+    else{
+        emptySearch.style.display = 'none';
+        const url = `https://openlibrary.org/search.json?q=${searchText}`;
+        fetch(url)
+        .then(res => res.json())
+        .then(data => displaySearchResult(data))
+    }
+};
 
 const displaySearchResult = data => {
     // console.log(data);
@@ -28,31 +29,36 @@ const displaySearchResult = data => {
     const searchQuantity = document.getElementById('search-quantity');
     searchQuantity.innerText = `Showing total ${data.numFound} number of books`;
 
+    // error handling for unavailable books
     if(data.numFound === 0){
         const errorSearch = document.getElementById('error');
-
+        errorSearch.style.display = 'block';
+        emptySearch.style.display = 'none';
     }
+    else{
+        errorSearch.style.display = 'none';
 
-    data?.docs.forEach((book) => {
-        // console.log(doc)
-
-        loadBookDetail(book);
-
-        const div = document.createElement('div');
-        div.classList.add('col');
-        div.innerHTML = `
-    <div class="card">
-        <img src="${image_url}" height="300px" class="card-img-top" alt="...">
-        <div class="card-body">
-          <h5 class="card-title"><b>Book Name:</b><i> ${title}</i></h5>
-          <p class="card-text"><b>Author Name:</b><i> ${author}</i></p>
-          <p class="card-text"><b>Book Publisher:</b><i> ${publisher}</i></p>
-          <p class="card-text"><b>Published Date:</b><i> ${publishedDate}</i></p>
+        data?.docs.forEach((book) => {
+            // console.log(doc)
+    
+            loadBookDetail(book);
+    
+            const div = document.createElement('div');
+            div.classList.add('col');
+            div.innerHTML = `
+        <div class="card">
+            <img src="${image_url}" height="300px" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title"><b>Book Name:</b><i> ${title}</i></h5>
+              <p class="card-text"><b>Author Name:</b><i> ${author}</i></p>
+              <p class="card-text"><b>Book Publisher:</b><i> ${publisher}</i></p>
+              <p class="card-text"><b>Published Date:</b><i> ${publishedDate}</i></p>
+            </div>
         </div>
-    </div>
-        `;
-        searchResult.appendChild(div);
-    });
+            `;
+            searchResult.appendChild(div);
+        });
+    }    
 }
 
 const loadBookDetail = book => {
