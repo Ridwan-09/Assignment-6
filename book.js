@@ -3,6 +3,9 @@ const searchBook = () => {
     const searchText = searchField.value;
     // console.log(searchText);
     searchField.value = '';
+    searchResult.value = '';
+    searchQuantity.innerText = '';
+    
     
     if(searchText === ''){
         const emptySearch = document.getElementById('empty-search');
@@ -26,6 +29,7 @@ const displaySearchResult = data => {
     searchQuantity.innerText = `Showing total ${data.numFound} number of books`;
 
     if(data.numFound === 0){
+        const errorSearch = document.getElementById('error');
 
     }
 
