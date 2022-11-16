@@ -3,7 +3,7 @@ const searchBook = () => {
     const searchText = searchField.value;
     // console.log(searchText);
     searchField.value = '';
-
+    searchResult.textContent = '';
 
 
     const url = `https://openlibrary.org/search.json?q=${searchText}`;
@@ -15,7 +15,7 @@ const searchBook = () => {
 const displaySearchResult = data => {
     console.log(data);
     const searchResult = document.getElementById('search-result');
-    searchResult.textContent = '';
+    
 
     data?.docs.forEach((book) => {
         // console.log(doc)
@@ -25,13 +25,13 @@ const displaySearchResult = data => {
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
-    <div class="card" style="width: 18rem;">
+    <div class="card">
         <img src="${image_url}" height="300px" class="card-img-top" alt="...">
         <div class="card-body">
-          <h5 class="card-title"><b>Book Name:</b><i>${title}</i></h5>
-          <p class="card-text"><b>Author Name:</b><i>${author}</i></p>
-          <p class="card-text"><b>Book Publisher:</b><i>${publisher}</i></p>
-          <p class="card-text"><b>Published Date:</b><i>${publishedDate}</i></p>
+          <h5 class="card-title"><b>Book Name:</b><i> ${title}</i></h5>
+          <p class="card-text"><b>Author Name:</b><i> ${author}</i></p>
+          <p class="card-text"><b>Book Publisher:</b><i> ${publisher}</i></p>
+          <p class="card-text"><b>Published Date:</b><i> ${publishedDate}</i></p>
         </div>
     </div>
         `;
@@ -43,6 +43,8 @@ const loadBookDetail = book => {
     book?.cover_i ? (image_url =`https://covers.openlibrary.org/b/id/${book?.cover_i}-M.jpg`) : (image_url = 'images/no-image.jpg');
 
     book?.title ? (title = book?.title) : (title = 'Not available');
+
+    book?.author_name ? (author = book?.author_name) : (author = 'Not Available');
  
     book?.publisher[0] ? (publisher = book?.publisher[0]) : (publisher = 'Not Available');
 
