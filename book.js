@@ -86,8 +86,8 @@ const loadBookDetail = book => {
     book?.author_name ? (author = book?.author_name) : (author = 'Not Available');
     
     // loading book publisher name if available
-    book?.publisher[0] ? (publisher = book?.publisher[0]) : (publisher = 'Not Available');
+    book?.publisher ? (publisher = book?.publisher) : (publisher = 'Not Available');
 
     // loading book publish date if available
-    book?.publish_date[0] ? (publishedDate = book?.publish_date[0]) : (publishedDate = 'Not Available');
+    book?.first_publish_year ? (publishedDate = book?.first_publish_year) : (publishedDate = 'Not Available');
 }
